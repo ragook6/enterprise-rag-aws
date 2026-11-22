@@ -1,0 +1,17 @@
+{
+  "model_id": "anthropic.claude-haiku-5-5",
+  "offer_id": "offer-REPLACE_WITH_REVIEWED_OFFER_ID",
+  "legal_doc": "offer-REPLACE_WITH_REVIEWED_OFFER_ID/REPLACE_WITH_LEGAL_DOC_ID",
+  "support": {
+    "refundPolicyDescription": "No refunds"
+  },
+  "term_types": [
+    "usageBasedPricingTerm",
+    "legalTerm",
+    "supportTerm"
+  ],
+  "rates_usd_per_1m": {
+    "input_tokens_standard": "0.11",
+    "output_tokens_standard": "0.55"
+  }
+}

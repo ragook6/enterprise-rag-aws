@@ -1,0 +1,738 @@
+{
+  "dataset": "hrl-enterprise-rag-eval",
+  "version": "1.0",
+  "generated_on": "2026-11-21",
+  "organization": "Halcyon Ridge Logistics (fictional)",
+  "notes": "Page numbers are 1-based physical PDF pages located automatically from extracted text. answer_keywords are the facts a correct answer must contain; an empty sources list means the question is intentionally unanswerable from the corpus.",
+  "documents": [
+    {
+      "document": "AWS_Landing_Zone_Architecture.pdf",
+      "pages": 4,
+      "sha256": "aa56a7d88d15ec3c8b802b86b04a092ea1a10d534b3c5f340e1582f173743fa9"
+    },
+    {
+      "document": "Cloud_Migration_SOW.pdf",
+      "pages": 4,
+      "sha256": "567a23bb8012fc91ffe1dd52752553ba08d71c048e9b90b1092eae7bffa3311e"
+    },
+    {
+      "document": "IAM_Security_Policies.pdf",
+      "pages": 4,
+      "sha256": "fc7d483fb76da3b750f4045a9bdc08f6c5de4c54d64eeefc2d47ebf6f0dd6d32"
+    },
+    {
+      "document": "Lambda_Incident_Runbook.pdf",
+      "pages": 4,
+      "sha256": "d4b3f6f355b6299411f35e715715a8d15e0e2a8175d060ae7d70181e4b4c1afd"
+    },
+    {
+      "document": "Transit_Gateway_Design.pdf",
+      "pages": 4,
+      "sha256": "2d597801b853207b08dffc94eaa5a38daa0efb60fb154bfbf1ef7dbcaeb9013c"
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q01",
+      "question": "Which S3 bucket receives the organization CloudTrail logs, and what is the AWS account ID of the account that owns it?",
+      "answer": "The organization trail hrl-org-trail delivers to the bucket hrl-org-cloudtrail-739204615882-use2 in the hrl-log-archive account, account ID 739204615882.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "hrl-org-cloudtrail-739204615882-use2",
+        "739204615882"
+      ],
+      "sources": [
+        {
+          "document": "AWS_Landing_Zone_Architecture.pdf",
+          "page": 3,
+          "passage": "The trail delivers to the bucket hrl-org-cloudtrail-739204615882-use2 in the hrl-log-archive account (739204615882)."
+        }
+      ]
+    },
+    {
+      "id": "Q02",
+      "question": "How long are CloudTrail logs retained, and how are they tiered over time?",
+      "answer": "Logs are protected by S3 Object Lock in compliance mode for 400 days, then transitioned to S3 Glacier Deep Archive, and expired after 2,555 days (7 years).",
+      "question_type": "numeric",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "400",
+        "Glacier Deep Archive",
+        "2,555"
+      ],
+      "sources": [
+        {
+          "document": "AWS_Landing_Zone_Architecture.pdf",
+          "page": 3,
+          "passage": "The bucket uses S3 Object Lock in compliance mode with a 400-day retention period. Objects transition to S3 Glacier Deep Archive after 400 days and are expired after 2,555 days (7 years)"
+        }
+      ]
+    },
+    {
+      "id": "Q03",
+      "question": "Which AWS Regions is HRL allowed to use, and what enforces the restriction?",
+      "answer": "Only us-east-2 (Ohio, primary) and us-west-2 (Oregon, disaster recovery). All other Regions are blocked by the SCP hrl-scp-deny-regions, with exemptions for global services.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "us-east-2",
+        "us-west-2",
+        "hrl-scp-deny-regions"
+      ],
+      "sources": [
+        {
+          "document": "AWS_Landing_Zone_Architecture.pdf",
+          "page": 2,
+          "passage": "The primary Region is us-east-2 (Ohio)"
+        },
+        {
+          "document": "AWS_Landing_Zone_Architecture.pdf",
+          "page": 2,
+          "passage": "The disaster recovery Region is us-west-2 (Oregon). All other Regions are blocked by the SCP hrl-scp-deny-regions"
+        }
+      ]
+    },
+    {
+      "id": "Q04",
+      "question": "What are the lifetime and budget limits for sandbox accounts, and what happens when the budget is exceeded?",
+      "answer": "Sandbox accounts live at most 90 days with a monthly budget of USD 500. At 120 percent of budget the account is automatically moved to the Suspended OU.",
+      "question_type": "numeric",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "90 days",
+        "500",
+        "120 percent",
+        "Suspended"
+      ],
+      "sources": [
+        {
+          "document": "AWS_Landing_Zone_Architecture.pdf",
+          "page": 3,
+          "passage": "Sandbox accounts have a maximum lifetime of 90 days and a monthly budget of USD 500. When actual spend reaches 120 percent of the sandbox budget the account is automatically moved to the Suspended OU."
+        }
+      ]
+    },
+    {
+      "id": "Q05",
+      "question": "How does a team request a new AWS account and how long does vending take?",
+      "answer": "By opening a pull request to the hrl-aft-account-requests repository; Account Factory for Terraform (AFT) creates the account, with a service level of 2 business days from pull request approval.",
+      "question_type": "procedural",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "hrl-aft-account-requests",
+        "2 business days"
+      ],
+      "sources": [
+        {
+          "document": "AWS_Landing_Zone_Architecture.pdf",
+          "page": 3,
+          "passage": "New accounts are requested by pull request to the repository hrl-aft-account-requests."
+        },
+        {
+          "document": "AWS_Landing_Zone_Architecture.pdf",
+          "page": 3,
+          "passage": "The service level for account vending is 2 business days from pull request approval."
+        }
+      ]
+    },
+    {
+      "id": "Q06",
+      "question": "What is the Amazon side ASN of the primary Transit Gateway and of the DR Transit Gateway?",
+      "answer": "The primary Transit Gateway hrl-tgw-use2-01 uses ASN 64620; the DR Transit Gateway hrl-tgw-usw2-01 uses ASN 64621.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "64620",
+        "64621"
+      ],
+      "sources": [
+        {
+          "document": "Transit_Gateway_Design.pdf",
+          "page": 1,
+          "passage": "The primary Transit Gateway hrl-tgw-use2-01 uses Amazon side ASN 64620 and the DR Transit Gateway hrl-tgw-usw2-01 uses Amazon side ASN 64621."
+        }
+      ]
+    },
+    {
+      "id": "Q07",
+      "question": "Why is appliance mode enabled on the inspection VPC attachment?",
+      "answer": "Appliance mode pins both directions of a flow to the same Availability Zone firewall endpoint, which is required for symmetric routing; without it stateful inspection would drop return traffic.",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "same Availability Zone",
+        "symmetric"
+      ],
+      "sources": [
+        {
+          "document": "Transit_Gateway_Design.pdf",
+          "page": 2,
+          "passage": "Appliance mode keeps both directions of a flow pinned to the same Availability Zone firewall endpoint, which is required for symmetric routing; without it, stateful inspection drops return traffic."
+        }
+      ]
+    },
+    {
+      "id": "Q08",
+      "question": "Describe HRL's AWS Direct Connect connections.",
+      "answer": "Two dedicated 10 Gbps connections: Colo Site A in Columbus (dxcon-fh41a7c2) and Colo Site B in Chicago (dxcon-fg92b8d3), both attached via transit VIFs to Direct Connect gateway hrl-dxgw-01 (ASN 64630).",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "10 Gbps",
+        "Columbus",
+        "Chicago",
+        "hrl-dxgw-01"
+      ],
+      "sources": [
+        {
+          "document": "Transit_Gateway_Design.pdf",
+          "page": 3,
+          "passage": "HRL has two dedicated 10 Gbps AWS Direct Connect connections terminating at Colo Site A in Columbus (dxcon-fh41a7c2) and Colo Site B in Chicago (dxcon-fg92b8d3). Both connections attach to the Direct Connect gateway hrl-dxgw-01 (ASN 64630)"
+        }
+      ]
+    },
+    {
+      "id": "Q09",
+      "question": "How is Direct Connect kept preferred over the backup VPN, and how fast is failover expected to be?",
+      "answer": "On-premises routers prepend AS 65010 three times on prefixes advertised over the VPN. With BFD on Direct Connect, failover to the VPN completes in under 60 seconds.",
+      "question_type": "conceptual",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "prepend",
+        "three times",
+        "60 seconds"
+      ],
+      "sources": [
+        {
+          "document": "Transit_Gateway_Design.pdf",
+          "page": 3,
+          "passage": "To keep Direct Connect preferred, the on-premises routers prepend AS 65010 three times on all prefixes advertised over the VPN. With BFD on Direct Connect, failover to the VPN is expected to complete in under 60 seconds."
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "What static routes are configured for the inter-region Transit Gateway peering and why?",
+      "answer": "Because TGW peering does not support dynamic propagation: 10.76.0.0/14 points to the peering attachment in us-east-2 and 10.64.0.0/14 points to the peering attachment in us-west-2.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "10.76.0.0/14",
+        "10.64.0.0/14",
+        "dynamic propagation"
+      ],
+      "sources": [
+        {
+          "document": "Transit_Gateway_Design.pdf",
+          "page": 3,
+          "passage": "Transit Gateway peering does not support dynamic propagation, so static routes are configured: 10.76.0.0/14 points to the peering attachment in us-east-2, and 10.64.0.0/14 points to the peering attachment in us-west-2."
+        }
+      ]
+    },
+    {
+      "id": "Q11",
+      "question": "Which alarm detects Transit Gateway blackhole packet drops and what is its threshold?",
+      "answer": "hrl-tgw-blackhole-drops fires when PacketDropCountBlackhole is greater than 0 for 5 consecutive minutes and pages the network on-call.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "hrl-tgw-blackhole-drops",
+        "greater than 0",
+        "5 consecutive minutes"
+      ],
+      "sources": [
+        {
+          "document": "Transit_Gateway_Design.pdf",
+          "page": 3,
+          "passage": "The CloudWatch alarm hrl-tgw-blackhole-drops fires when PacketDropCountBlackhole is greater than 0 for 5 consecutive minutes and pages the network on-call."
+        }
+      ]
+    },
+    {
+      "id": "Q12",
+      "question": "What is the maximum session duration for the HRL-PlatformAdmin permission set?",
+      "answer": "4 hours. It is assigned only to the CPE platform team.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "4 hours"
+      ],
+      "sources": [
+        {
+          "document": "IAM_Security_Policies.pdf",
+          "page": 2,
+          "passage": "The HRL-PlatformAdmin permission set has a maximum session duration of 4 hours and is assigned only to the CPE platform team."
+        }
+      ]
+    },
+    {
+      "id": "Q13",
+      "question": "What are the rotation and inactivity rules for IAM access keys?",
+      "answer": "Keys must be rotated at a maximum age of 90 days; credentials unused for 45 days are disabled automatically and those unused for 90 days are deleted.",
+      "question_type": "numeric",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "90 days",
+        "45 days"
+      ],
+      "sources": [
+        {
+          "document": "IAM_Security_Policies.pdf",
+          "page": 2,
+          "passage": "Access keys must be rotated at a maximum age of 90 days. Credentials unused for 45 days are automatically disabled, and credentials unused for 90 days are deleted."
+        }
+      ]
+    },
+    {
+      "id": "Q14",
+      "question": "What happens when a break-glass user signs in to the console?",
+      "answer": "The sign-in matches EventBridge rule hrl-breakglass-login, which notifies SNS topic hrl-security-critical and opens a SEV1 security incident. The password is rotated after every use.",
+      "question_type": "procedural",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "hrl-breakglass-login",
+        "hrl-security-critical",
+        "SEV1"
+      ],
+      "sources": [
+        {
+          "document": "IAM_Security_Policies.pdf",
+          "page": 2,
+          "passage": "Any console sign-in by a break-glass user matches the EventBridge rule hrl-breakglass-login, which notifies the SNS topic hrl-security-critical and opens a SEV1 security incident."
+        }
+      ]
+    },
+    {
+      "id": "Q15",
+      "question": "Within what time must a High severity IAM Access Analyzer finding be remediated, and which analyzer produces these findings?",
+      "answer": "High findings must be remediated within 7 days (escalated to the Director of Cloud Platform Engineering if missed). Findings come from hrl-org-access-analyzer in the hrl-security-tooling account.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "7 days",
+        "hrl-org-access-analyzer"
+      ],
+      "sources": [
+        {
+          "document": "IAM_Security_Policies.pdf",
+          "page": 3,
+          "passage": "The organization-level IAM Access Analyzer hrl-org-access-analyzer runs in the hrl-security-tooling account"
+        },
+        {
+          "document": "IAM_Security_Policies.pdf",
+          "page": 3,
+          "passage": "High 7 days Director of Cloud Platform Engineering"
+        }
+      ]
+    },
+    {
+      "id": "Q16",
+      "question": "Under what conditions can a developer create a new IAM role?",
+      "answer": "Only under the IAM path /app/ and only if the HRL-DeveloperBoundary permission boundary is attached to the new role.",
+      "question_type": "procedural",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "/app/",
+        "HRL-DeveloperBoundary"
+      ],
+      "sources": [
+        {
+          "document": "IAM_Security_Policies.pdf",
+          "page": 3,
+          "passage": "Developers using the HRL-Developer permission set may create IAM roles only under the path /app/ and only if the permission boundary HRL-DeveloperBoundary is attached to the new role."
+        }
+      ]
+    },
+    {
+      "id": "Q17",
+      "question": "Why should new guardrails for the Workloads/Prod OU be merged into an existing SCP?",
+      "answer": "AWS Organizations allows at most five SCPs attached directly to a target and Workloads/Prod already uses four of its five slots.",
+      "question_type": "conceptual",
+      "difficulty": "hard",
+      "answer_keywords": [
+        "five",
+        "four"
+      ],
+      "sources": [
+        {
+          "document": "IAM_Security_Policies.pdf",
+          "page": 2,
+          "passage": "The Workloads/Prod OU currently uses four of its five SCP slots, so new controls should be merged into an existing SCP rather than attached separately."
+        }
+      ]
+    },
+    {
+      "id": "Q18",
+      "question": "What memory, timeout and reserved concurrency are configured for hrl-prod-order-ingest?",
+      "answer": "1024 MB memory, 30 second timeout and reserved concurrency of 400.",
+      "question_type": "numeric",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "1024 MB",
+        "30 second",
+        "400"
+      ],
+      "sources": [
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 2,
+          "passage": "The function hrl-prod-order-ingest is configured with 1024 MB of memory, a 30 second timeout and a reserved concurrency of 400."
+        }
+      ]
+    },
+    {
+      "id": "Q19",
+      "question": "What is the SQS visibility timeout for the order events queue and after how many receives do messages go to the DLQ?",
+      "answer": "180 seconds (six times the 30 s function timeout); messages move to hrl-prod-order-events-dlq after a maxReceiveCount of 5.",
+      "question_type": "numeric",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "180 seconds",
+        "maxReceiveCount of 5"
+      ],
+      "sources": [
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 2,
+          "passage": "The SQS queue visibility timeout is 180 seconds, which is six times the function timeout, and messages move to the dead-letter queue hrl-prod-order-events-dlq after a maxReceiveCount of 5."
+        }
+      ]
+    },
+    {
+      "id": "Q20",
+      "question": "During throttling, how high can on-call raise reserved concurrency without CAB approval, and why is there a limit?",
+      "answer": "Up to 600 without CAB approval. Above 600 needs emergency CAB approval because Atlas ERP supports at most 650 concurrent connections.",
+      "question_type": "procedural",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "600",
+        "650"
+      ],
+      "sources": [
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 3,
+          "passage": "The on-call engineer may raise reserved concurrency for hrl-prod-order-ingest up to a maximum of 600 without CAB approval. Any value above 600 requires emergency CAB approval because Atlas ERP supports at most 650 concurrent connections."
+        }
+      ]
+    },
+    {
+      "id": "Q21",
+      "question": "What are the rules for redriving messages from the OEP dead-letter queue?",
+      "answer": "Redrive only after the root cause is fixed, at a maximum of 50 messages per second; more than 10,000 messages requires Incident Commander approval; redrive must start within the 14-day DLQ retention.",
+      "question_type": "procedural",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "50 messages per second",
+        "10,000",
+        "Incident Commander"
+      ],
+      "sources": [
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 3,
+          "passage": "Use the SQS console or StartMessageMoveTask with a maximum velocity of 50 messages per second. Redriving more than 10,000 messages requires approval from the Incident Commander."
+        }
+      ]
+    },
+    {
+      "id": "Q22",
+      "question": "What caused incident INC-2291 and what was its impact?",
+      "answer": "A security group change removed the egress rule to 172.20.14.0/24 on TCP 8443, so every invocation timed out against Atlas ERP. The SEV1 outage lasted 47 minutes and 18,240 messages went to the DLQ.",
+      "question_type": "factual",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "security group",
+        "8443",
+        "47 minutes",
+        "18,240"
+      ],
+      "sources": [
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 4,
+          "passage": "Reference incident INC-2291 (SEV1, 2026-03-14): a security group change removed the egress rule to 172.20.14.0/24 on TCP 8443, causing every invocation to time out against Atlas ERP. The outage lasted 47 minutes and 18,240 messages were moved to the DLQ"
+        }
+      ]
+    },
+    {
+      "id": "Q23",
+      "question": "What happens if the primary on-call engineer does not acknowledge an OEP page?",
+      "answer": "After 10 minutes without acknowledgement the page escalates automatically to the cpe-secondary rotation.",
+      "question_type": "procedural",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "10 minutes",
+        "cpe-secondary"
+      ],
+      "sources": [
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 2,
+          "passage": "If the cpe-primary on-call engineer does not acknowledge a page within 10 minutes, the page escalates automatically to cpe-secondary."
+        }
+      ]
+    },
+    {
+      "id": "Q24",
+      "question": "What is the total fixed fee of the Project Meridian SOW and what are the payment terms?",
+      "answer": "USD 2,480,000, invoiced on milestone completion, payable net 45 days.",
+      "question_type": "numeric",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "2,480,000",
+        "net 45"
+      ],
+      "sources": [
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 3,
+          "passage": "The total fixed fee for this SOW is USD 2,480,000, invoiced on completion of the milestones below. Payment terms are net 45 days from invoice."
+        }
+      ]
+    },
+    {
+      "id": "Q25",
+      "question": "How many applications are in scope and how do they break down between migrate, retire and retain?",
+      "answer": "186 applications: 160 migrated to AWS, 21 retired and 5 retained on premises.",
+      "question_type": "numeric",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "186",
+        "160",
+        "21",
+        "5"
+      ],
+      "sources": [
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 2,
+          "passage": "The 186 applications have been assigned a migration strategy"
+        },
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 2,
+          "passage": "Of these, 160 applications will be migrated to AWS, 21 will be retired and 5 will be retained on premises."
+        }
+      ]
+    },
+    {
+      "id": "Q26",
+      "question": "What is the deliverable acceptance period and what happens if the client does not respond?",
+      "answer": "10 business days; if the client neither accepts nor rejects within that period the deliverable is deemed accepted.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "10 business days",
+        "deemed accepted"
+      ],
+      "sources": [
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 3,
+          "passage": "Client will review each deliverable within an acceptance period of 10 business days. If Client does not accept or reject a deliverable within the acceptance period, the deliverable is deemed accepted."
+        }
+      ]
+    },
+    {
+      "id": "Q27",
+      "question": "What is the standard cutover window and the go/no-go decision point?",
+      "answer": "Saturday 22:00 ET to Sunday 06:00 ET, with the go/no-go rollback decision at 03:00 ET.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "22:00",
+        "06:00",
+        "03:00"
+      ],
+      "sources": [
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 3,
+          "passage": "Cutovers are performed in the standard window from Saturday 22:00 ET to Sunday 06:00 ET. The go/no-go rollback decision point is 03:00 ET."
+        }
+      ]
+    },
+    {
+      "id": "Q28",
+      "question": "Why must Project Meridian finish before 2027-03-31, and what is the size of the estate?",
+      "answer": "The DC-DAY1 Dayton data center lease expires on 2027-03-31. The estate is 186 applications on 1,412 virtual servers with 312 TB of storage.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "2027-03-31",
+        "1,412",
+        "312 TB"
+      ],
+      "sources": [
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 1,
+          "passage": "HRL operates its primary data center DC-DAY1 in Dayton, Ohio under a lease that expires on 2027-03-31."
+        },
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 1,
+          "passage": "186 applications running on 1,412 virtual servers with 312 TB of storage."
+        }
+      ]
+    },
+    {
+      "id": "Q29",
+      "question": "When is the peak-season change freeze?",
+      "answer": "From 2026-11-16 to 2027-01-04; no production cutovers may occur during it.",
+      "question_type": "factual",
+      "difficulty": "easy",
+      "answer_keywords": [
+        "2026-11-16",
+        "2027-01-04"
+      ],
+      "sources": [
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 2,
+          "passage": "No production cutovers may occur during the HRL peak-season change freeze from 2026-11-16 to 2027-01-04."
+        }
+      ]
+    },
+    {
+      "id": "Q30",
+      "question": "What is the CIDR of the VPC that hosts the Order Event Processor Lambda, and which Transit Gateway route table is it associated with?",
+      "answer": "The function runs in vpc-prod-orders-use2, which is 10.66.0.0/20 and is associated with tgw-rt-prod (whose only route is a default route to the inspection attachment).",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "answer_keywords": [
+        "vpc-prod-orders-use2",
+        "10.66.0.0/20",
+        "tgw-rt-prod"
+      ],
+      "sources": [
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 1,
+          "passage": "The function runs in the hrl-prod-workloads account (538946102277) inside the VPC vpc-prod-orders-use2"
+        },
+        {
+          "document": "Transit_Gateway_Design.pdf",
+          "page": 2,
+          "passage": "The production order-processing VPC vpc-prod-orders-use2 (10.66.0.0/20) belongs to the hrl-prod-workloads account and is associated with the route table tgw-rt-prod."
+        }
+      ]
+    },
+    {
+      "id": "Q31",
+      "question": "What RTO and RPO apply to the Order Event Processor, and which backup plan supports it?",
+      "answer": "OEP is Tier 1, so RTO is 1 hour and RPO is 15 minutes. It uses AWS Backup plan hrl-backup-tier1 with hourly snapshots copied to a locked vault in us-west-2.",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "answer_keywords": [
+        "Tier 1",
+        "1 hour",
+        "15 minutes",
+        "hrl-backup-tier1"
+      ],
+      "sources": [
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 1,
+          "passage": "OEP is classified as a Tier 1 application."
+        },
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 3,
+          "passage": "Tier 1 applications have a recovery time objective (RTO) of 1 hour and a recovery point objective (RPO) of 15 minutes."
+        },
+        {
+          "document": "AWS_Landing_Zone_Architecture.pdf",
+          "page": 4,
+          "passage": "Tier 1 workloads use the hrl-backup-tier1 plan, which takes hourly snapshots and copies every recovery point to a vault in us-west-2"
+        }
+      ]
+    },
+    {
+      "id": "Q32",
+      "question": "What naming convention governs Lambda execution roles, and what is the role name for the Order Event Processor?",
+      "answer": "Roles follow hrl-lambda-<app>-exec, one role per function; OEP uses hrl-lambda-order-ingest-exec.",
+      "question_type": "multi_hop",
+      "difficulty": "medium",
+      "answer_keywords": [
+        "hrl-lambda-<app>-exec",
+        "hrl-lambda-order-ingest-exec"
+      ],
+      "sources": [
+        {
+          "document": "IAM_Security_Policies.pdf",
+          "page": 3,
+          "passage": "Each Lambda function must have its own execution role named using the convention hrl-lambda-<app>-exec."
+        },
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 1,
+          "passage": "The execution role is hrl-lambda-order-ingest-exec"
+        }
+      ]
+    },
+    {
+      "id": "Q33",
+      "question": "In which migration wave and with which strategy is the Order Event Processor migrated, and what milestone payment is triggered when that wave completes?",
+      "answer": "Wave 2 (2026-06-15 to 2026-08-28) using the Refactor strategy; completing Wave 2 triggers milestone M4, 25 percent or USD 620,000.",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "answer_keywords": [
+        "Wave 2",
+        "Refactor",
+        "620,000"
+      ],
+      "sources": [
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 2,
+          "passage": "The Order Event Processor (APP-0217) is migrated in Wave 2 using the Refactor strategy. Wave 2 runs from 2026-06-15 to 2026-08-28"
+        },
+        {
+          "document": "Cloud_Migration_SOW.pdf",
+          "page": 3,
+          "passage": "M4 Wave 2 complete 25% 620,000"
+        }
+      ]
+    },
+    {
+      "id": "Q34",
+      "question": "During a regional failover of the Order Event Processor, how does the DR function reach Atlas ERP, and which Transit Gateway serves us-west-2?",
+      "answer": "Through the inter-region Transit Gateway peering attachment (tgw-attach-03f90b17d3af0c2e9) between hrl-tgw-use2-01 and the DR Transit Gateway hrl-tgw-usw2-01 (ASN 64621), then over Direct Connect to Dayton.",
+      "question_type": "multi_hop",
+      "difficulty": "hard",
+      "answer_keywords": [
+        "peering",
+        "hrl-tgw-usw2-01"
+      ],
+      "sources": [
+        {
+          "document": "Lambda_Incident_Runbook.pdf",
+          "page": 4,
+          "passage": "Confirm Atlas ERP reachability from us-west-2 through the inter-region Transit Gateway peering attachment (HRL-NET-002 section 8)."
+        },
+        {
+          "document": "Transit_Gateway_Design.pdf",
+          "page": 3,
+          "passage": "The primary and DR Transit Gateways are connected by the peering attachment tgw-attach-03f90b17d3af0c2e9."
+        },
+        {
+          "document": "Transit_Gateway_Design.pdf",
+          "page": 1,
+          "passage": "the DR Transit Gateway hrl-tgw-usw2-01 uses Amazon side ASN 64621"
+        }
+      ]
+    },
+    {
+      "id": "Q35",
+      "question": "What is HRL's monthly AWS Enterprise Support cost?",
+      "answer": "The documents do not state this. A correct RAG answer should say the information is not available in the provided documents.",
+      "question_type": "unanswerable",
+      "difficulty": "medium",
+      "answer_keywords": [],
+      "sources": []
+    }
+  ]
+}

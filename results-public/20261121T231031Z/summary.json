@@ -1,0 +1,154 @@
+{
+  "baseline-fixed100": {
+    "questions": 35,
+    "ok": 35,
+    "errors": 0,
+    "keyword_recall@k": 0.922,
+    "passage_evidence_coverage@k": 0.93,
+    "all_passages_present@k": 0.853,
+    "source_doc_hit@k": 1.0,
+    "source_page_label_hit@k (informational)": 0.912,
+    "answer_keyword_coverage": 0.86,
+    "fully_correct_rate": 0.765,
+    "abstention_correct": [
+      true
+    ],
+    "false_abstentions": 1,
+    "answers_with_citations": 1.0,
+    "invalid_citation_ids": 0,
+    "cited_chunk_keyword_support": 1.0,
+    "truncated": 0,
+    "input_tokens": 26741,
+    "output_tokens": 2218,
+    "avg_context_chars": 1770.714,
+    "avg_retrieve_ms": 434.343,
+    "avg_generate_ms": 465.086,
+    "cost_usd": 0.001247,
+    "by_question_type": {
+      "conceptual": {
+        "n": 3,
+        "keyword_recall@k": 1.0,
+        "passage_evidence_coverage@k": 1.0,
+        "source_doc_hit@k": 1.0,
+        "answer_keyword_coverage": 1.0,
+        "fully_correct": 1.0
+      },
+      "factual": {
+        "n": 13,
+        "keyword_recall@k": 0.904,
+        "passage_evidence_coverage@k": 0.929,
+        "source_doc_hit@k": 1.0,
+        "answer_keyword_coverage": 0.878,
+        "fully_correct": 0.769
+      },
+      "multi_hop": {
+        "n": 5,
+        "keyword_recall@k": 0.717,
+        "passage_evidence_coverage@k": 0.707,
+        "source_doc_hit@k": 1.0,
+        "answer_keyword_coverage": 0.5,
+        "fully_correct": 0.4
+      },
+      "numeric": {
+        "n": 7,
+        "keyword_recall@k": 1.0,
+        "passage_evidence_coverage@k": 1.0,
+        "source_doc_hit@k": 1.0,
+        "answer_keyword_coverage": 0.952,
+        "fully_correct": 0.857
+      },
+      "procedural": {
+        "n": 6,
+        "keyword_recall@k": 1.0,
+        "passage_evidence_coverage@k": 1.0,
+        "source_doc_hit@k": 1.0,
+        "answer_keyword_coverage": 0.945,
+        "fully_correct": 0.833
+      },
+      "unanswerable": {
+        "n": 1,
+        "keyword_recall@k": null,
+        "passage_evidence_coverage@k": null,
+        "source_doc_hit@k": null,
+        "answer_keyword_coverage": null,
+        "fully_correct": null
+      }
+    }
+  },
+  "improved-hierarchical": {
+    "questions": 35,
+    "ok": 35,
+    "errors": 0,
+    "keyword_recall@k": 0.985,
+    "passage_evidence_coverage@k": 0.977,
+    "all_passages_present@k": 0.941,
+    "source_doc_hit@k": 0.971,
+    "source_page_label_hit@k (informational)": 0.549,
+    "answer_keyword_coverage": 0.907,
+    "fully_correct_rate": 0.794,
+    "abstention_correct": [
+      true
+    ],
+    "false_abstentions": 1,
+    "answers_with_citations": 0.914,
+    "invalid_citation_ids": 0,
+    "cited_chunk_keyword_support": 0.927,
+    "truncated": 0,
+    "input_tokens": 140779,
+    "output_tokens": 2065,
+    "avg_context_chars": 13830.314,
+    "avg_retrieve_ms": 419.371,
+    "avg_generate_ms": 499.4,
+    "cost_usd": 0.005216,
+    "by_question_type": {
+      "conceptual": {
+        "n": 3,
+        "keyword_recall@k": 1.0,
+        "passage_evidence_coverage@k": 1.0,
+        "source_doc_hit@k": 1.0,
+        "answer_keyword_coverage": 1.0,
+        "fully_correct": 1.0
+      },
+      "factual": {
+        "n": 13,
+        "keyword_recall@k": 1.0,
+        "passage_evidence_coverage@k": 0.992,
+        "source_doc_hit@k": 1.0,
+        "answer_keyword_coverage": 0.84,
+        "fully_correct": 0.692
+      },
+      "multi_hop": {
+        "n": 5,
+        "keyword_recall@k": 0.9,
+        "passage_evidence_coverage@k": 0.867,
+        "source_doc_hit@k": 0.8,
+        "answer_keyword_coverage": 0.783,
+        "fully_correct": 0.4
+      },
+      "numeric": {
+        "n": 7,
+        "keyword_recall@k": 1.0,
+        "passage_evidence_coverage@k": 1.0,
+        "source_doc_hit@k": 1.0,
+        "answer_keyword_coverage": 1.0,
+        "fully_correct": 1.0
+      },
+      "procedural": {
+        "n": 6,
+        "keyword_recall@k": 1.0,
+        "passage_evidence_coverage@k": 1.0,
+        "source_doc_hit@k": 1.0,
+        "answer_keyword_coverage": 1.0,
+        "fully_correct": 1.0
+      },
+      "unanswerable": {
+        "n": 1,
+        "keyword_recall@k": null,
+        "passage_evidence_coverage@k": null,
+        "source_doc_hit@k": null,
+        "answer_keyword_coverage": null,
+        "fully_correct": null
+      }
+    }
+  }
+}

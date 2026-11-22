@@ -1,0 +1,128 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadInferenceProfileForPlan",
+      "Effect": "Allow",
+      "Action": "bedrock:GetInferenceProfile",
+      "Resource": "arn:aws:bedrock:us-west-2:111122223333:inference-profile/*"
+    },
+    {
+      "Sid": "LabDocumentBucketsOnly",
+      "Effect": "Allow",
+      "Action": [
+        "s3:CreateBucket",
+        "s3:DeleteBucket",
+        "s3:ListBucket",
+        "s3:ListBucketVersions",
+        "s3:GetBucket*",
+        "s3:PutBucketPolicy",
+        "s3:DeleteBucketPolicy",
+        "s3:PutBucketPublicAccessBlock",
+        "s3:PutBucketOwnershipControls",
+        "s3:PutEncryptionConfiguration",
+        "s3:GetEncryptionConfiguration",
+        "s3:PutBucketTagging",
+        "s3:GetAccelerateConfiguration",
+        "s3:GetLifecycleConfiguration",
+        "s3:GetReplicationConfiguration"
+      ],
+      "Resource": "arn:aws:s3:::hrl-rag-*"
+    },
+    {
+      "Sid": "LabDocumentObjectsOnly",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject*",
+        "s3:PutObject*",
+        "s3:DeleteObject*"
+      ],
+      "Resource": "arn:aws:s3:::hrl-rag-*/*"
+    },
+    {
+      "Sid": "LabVectorBucketsAndIndexesOnly",
+      "Effect": "Allow",
+      "Action": "s3vectors:*",
+      "Resource": "arn:aws:s3vectors:us-west-2:111122223333:bucket/hrl-rag-*"
+    },
+    {
+      "Sid": "KnowledgeBasesInLabRegion",
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:CreateKnowledgeBase",
+        "bedrock:GetKnowledgeBase",
+        "bedrock:UpdateKnowledgeBase",
+        "bedrock:DeleteKnowledgeBase",
+        "bedrock:CreateDataSource",
+        "bedrock:GetDataSource",
+        "bedrock:UpdateDataSource",
+        "bedrock:DeleteDataSource",
+        "bedrock:ListDataSources",
+        "bedrock:TagResource",
+        "bedrock:UntagResource",
+        "bedrock:ListTagsForResource"
+      ],
+      "Resource": "arn:aws:bedrock:us-west-2:111122223333:knowledge-base/*"
+    },
+    {
+      "Sid": "LabRolesOnly",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreateRole",
+        "iam:DeleteRole",
+        "iam:GetRole",
+        "iam:UpdateRole",
+        "iam:UpdateAssumeRolePolicy",
+        "iam:TagRole",
+        "iam:UntagRole",
+        "iam:ListRolePolicies",
+        "iam:ListAttachedRolePolicies",
+        "iam:ListInstanceProfilesForRole",
+        "iam:PutRolePolicy",
+        "iam:GetRolePolicy",
+        "iam:DeleteRolePolicy"
+      ],
+      "Resource": "arn:aws:iam::111122223333:role/hrl-rag-*"
+    },
+    {
+      "Sid": "AttachOnlyLabManagedPolicies",
+      "Effect": "Allow",
+      "Action": [
+        "iam:AttachRolePolicy",
+        "iam:DetachRolePolicy"
+      ],
+      "Resource": "arn:aws:iam::111122223333:role/hrl-rag-*",
+      "Condition": {
+        "ArnLike": {
+          "iam:PolicyARN": "arn:aws:iam::111122223333:policy/hrl-rag-*"
+        }
+      }
+    },
+    {
+      "Sid": "LabManagedPoliciesOnly",
+      "Effect": "Allow",
+      "Action": [
+        "iam:CreatePolicy",
+        "iam:DeletePolicy",
+        "iam:GetPolicy",
+        "iam:GetPolicyVersion",
+        "iam:ListPolicyVersions",
+        "iam:CreatePolicyVersion",
+        "iam:DeletePolicyVersion",
+        "iam:TagPolicy"
+      ],
+      "Resource": "arn:aws:iam::111122223333:policy/hrl-rag-*"
+    },
+    {
+      "Sid": "PassKbRolesToBedrockOnly",
+      "Effect": "Allow",
+      "Action": "iam:PassRole",
+      "Resource": "arn:aws:iam::111122223333:role/hrl-rag-kb-*",
+      "Condition": {
+        "StringEquals": {
+          "iam:PassedToService": "bedrock.amazonaws.com"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "run_id": "20261121T225932Z",
+  "identity": "arn:aws:sts::111122223333:assumed-role/hrl-rag-experiment-runner/rag-evaluation",
+  "arms": {
+    "baseline-fixed100": "KBFIXED001",
+    "improved-hierarchical": "KBHIER0001"
+  },
+  "model": "us.amazon.nova-micro-v1:0",
+  "inference_config": {
+    "temperature": 0,
+    "maxTokens": 512
+  },
+  "prompt_template_version": "rag-answer-v1",
+  "top_k": 5,
+  "config_fingerprint": "2631b3d87ad62307",
+  "questions": [
+    "Q18"
+  ],
+  "retrieval_only": false
+}

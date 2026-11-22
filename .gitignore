@@ -1,0 +1,25 @@
+# --- environments / caches ---
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# --- Terraform: state, variables with real ARNs, provider cache ---
+infra/.terraform/
+infra/*.tfstate
+infra/*.tfstate.*
+infra/*.tfplan
+infra/.terraform.tfstate.lock.info
+infra/terraform.tfvars
+
+# --- private, never published ---
+# original evaluation artifacts (contain real account/resource IDs); public copy: results-public/
+results/
+# personal setup notes and session logs
+private/
+# unredacted console captures
+screenshots-raw/
+# LinkedIn drafts until approved
+drafts/
+# real identifiers used by the local scanner (never commit)
+.sensitive-denylist

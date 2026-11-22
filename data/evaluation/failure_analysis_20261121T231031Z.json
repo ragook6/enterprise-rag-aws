@@ -1,0 +1,43 @@
+{
+  "run_id": "20261121T231031Z",
+  "reviewer": "Claude (AI assistant) - manual reading of the stored answers and per-passage evidence. Not a human subject-matter-expert review and not an automated metric.",
+  "method": "Retrieval failure = the expected evidence was not in the top-5 chunks (per-passage token coverage < 90%). Generation failure = the evidence was retrieved but the answer omitted, contradicted or invented facts, or abstained. Semantic judgments below are the reviewer's reading, not verified support.",
+  "questions": {
+    "Q03": {
+      "baseline-fixed100": {"failure": "retrieval", "semantic_reading": "Incomplete but honest",
+        "note": "The 100-token chunk naming us-east-2 and us-west-2 and the SCP was not retrieved (passage evidence 0.26). The answer said 'exactly two Regions' and flagged 'Not covered: the specific names'. No invented facts."},
+      "improved-hierarchical": {"failure": "none", "semantic_reading": "Correct",
+        "note": "The parent chunk contained the full Region Strategy paragraph; the answer names both Regions and hrl-scp-deny-regions."}
+    },
+    "Q15": {
+      "baseline-fixed100": {"failure": "none", "semantic_reading": "Correct (minor misphrasing)",
+        "note": "States 7 days and hrl-org-access-analyzer. It says remediation is 'by' the Director; the document says escalation 'to' the Director if missed - a wording error that lexical scoring cannot detect."},
+      "improved-hierarchical": {"failure": "generation", "semantic_reading": "Factually wrong",
+        "note": "Evidence was retrieved (coverage 1.0) but the answer gives '24 hours' - the Critical row of the same SLA table - instead of 7 days for High. Long parent context containing the whole table led to a wrong-row error."}
+    },
+    "Q22": {
+      "baseline-fixed100": {"failure": "none", "semantic_reading": "Correct",
+        "note": "Security group change, TCP 8443, 47 minutes, 18,240 messages - all stated and cited."},
+      "improved-hierarchical": {"failure": "generation", "semantic_reading": "False abstention",
+        "note": "The INC-2291 passage was retrieved (coverage 1.0) but the model replied that the documents do not contain the information."}
+    },
+    "Q30": {
+      "baseline-fixed100": {"failure": "retrieval", "semantic_reading": "Abstained (justified by its context)",
+        "note": "Only the Runbook half was retrieved (passage evidence 0.31); the Transit Gateway passage with 10.66.0.0/20 and tgw-rt-prod was missing, so the model correctly said it could not answer."},
+      "improved-hierarchical": {"failure": "none", "semantic_reading": "Correct",
+        "note": "Gives 10.66.0.0/20 and tgw-rt-prod. v1 marked it wrong only for not repeating the VPC name, which the question did not ask for (fixed in v2 via scoring_revisions.json)."}
+    },
+    "Q31": {
+      "baseline-fixed100": {"failure": "retrieval", "semantic_reading": "Partially correct",
+        "note": "RTO 1 hour and RPO 15 minutes are right, but the backup-plan passage (hrl-backup-tier1) was not fully retrieved (passage evidence 0.73), so the plan was reported as 'not covered'."},
+      "improved-hierarchical": {"failure": "none", "semantic_reading": "Correct",
+        "note": "RTO, RPO and hrl-backup-tier1 with the cross-Region copy. v1 penalized the missing word 'Tier 1', which the question did not ask for (fixed in v2)."}
+    },
+    "Q34": {
+      "baseline-fixed100": {"failure": "retrieval + generation", "semantic_reading": "Wrong, with an invented claim",
+        "note": "The peering and DR-gateway passages were not fully retrieved (evidence 0.49). The answer then invented facts: it routes failover through tgw-rt-prod and names 'HRL-NET-002' (a document ID) as the us-west-2 Transit Gateway. Unsupported by the sources."},
+      "improved-hierarchical": {"failure": "retrieval", "semantic_reading": "Partially correct and honest",
+        "note": "The Transit Gateway document was not retrieved (document hit false, evidence 0.33). The answer correctly describes the inter-region peering attachment and explicitly says the us-west-2 Transit Gateway is not specified in the retrieved text."}
+    }
+  }
+}

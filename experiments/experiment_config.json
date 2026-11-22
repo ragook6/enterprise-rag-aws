@@ -1,0 +1,81 @@
+{
+  "experiment": "chunking-strategy-comparison-v1",
+  "hypothesis": "Hierarchical chunking (child 300 / parent 1500 tokens) answers more ground-truth questions correctly than fixed 100-token chunks, especially table-based (Q15, Q33) and multi-hop (Q30-Q34) questions, at the cost of more context tokens per answer.",
+  "independent_variable": {
+    "name": "chunking_strategy",
+    "arms": {
+      "baseline-fixed100": "FIXED_SIZE maxTokens=100 overlapPercentage=1 (API minimum; effectively no overlap)",
+      "improved-hierarchical": "HIERARCHICAL parent=1500 child=300 overlapTokens=60 (1,800 combined tokens, below the ~8,000-token S3 Vectors metadata guidance)"
+    },
+    "source_of_truth": "infra/variables.tf -> var.experiments"
+  },
+  "controlled_variables": {
+    "documents": "data/documents/*.pdf (same 5 files, same S3 prefix, sha256 recorded in ground_truth.json)",
+    "parsing": "Bedrock default parser (no foundation-model parsing)",
+    "embedding_model_id": "amazon.titan-embed-text-v2:0",
+    "embedding_dimensions": 1024,
+    "embedding_data_type": "FLOAT32",
+    "vector_store": "Amazon S3 Vectors, one index per arm, float32, cosine",
+    "retrieval": {
+      "api": "bedrock-agent-runtime Retrieve",
+      "numberOfResults": 5,
+      "searchType": "SEMANTIC",
+      "metadata_filter": null,
+      "reranking": null
+    },
+    "generation": {
+      "model": "Amazon Nova Micro",
+      "inference_profile_id": "us.amazon.nova-micro-v1:0",
+      "inference_profile_regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-2"
+      ],
+      "region": "us-west-2",
+      "api": "bedrock-runtime Converse (boto3)",
+      "identity": "MFA-gated role hrl-rag-experiment-runner (assumed from the hrl-mfa session)",
+      "inference_config": {
+        "temperature": 0,
+        "maxTokens": 512
+      },
+      "prompt_template_version": "rag-answer-v1",
+      "abstain_text": "The provided documents do not contain this information.",
+      "system_prompt": "You answer questions about Halcyon Ridge Logistics using ONLY the numbered source excerpts in the user message.\nRules:\n1. Use only facts stated in the sources. Never use outside knowledge, assumptions, or guesses.\n2. Cite each fact with its source number in square brackets, for example [S2].\n3. If the sources do not contain the answer, reply with exactly this sentence and nothing else: \"The provided documents do not contain this information.\"\n4. If the sources answer only part of the question, answer that part with citations, then add a sentence starting with \"Not covered:\" that names the missing part.\n5. Quote exact values (numbers, names, IDs, dates) as written in the sources. Keep the answer under 6 sentences.",
+      "context_format": "[S{n}] (document: {document}, page: {page})\\n{text}  -- sources in Retrieve score order, blank line between",
+      "pricing_usd_per_1m_tokens": {
+        "input": 0.035,
+        "output": 0.14,
+        "source": "AWS Price List, us-west-2, on-demand"
+      },
+      "retries": "botocore standard mode, max 3 attempts (throttling/transient errors only)"
+    },
+    "evaluation_set": "data/evaluation/ground_truth.json (35 questions, identical for both arms)"
+  },
+  "metrics": {
+    "retrieval": [
+      "keyword_recall@5: share of answer_keywords found in the concatenated retrieved text",
+      "source_doc_hit@5: every expected source document appears among retrieved chunks",
+      "source_page_hit@5: share of expected (document, page) pairs retrieved (when page metadata exists)",
+      "multi_hop_coverage: source_doc_hit for multi_hop questions"
+    ],
+    "generation": [
+      "answer_keyword_coverage: share of answer_keywords present in the generated answer",
+      "fully_correct: answer_keyword_coverage == 1.0 (answerable questions)",
+      "abstention_correct: unanswerable question answered with exactly the abstain_text",
+      "false_abstention: answerable question answered with the abstain_text",
+      "citation_validity: every [S#] cited exists in the provided context",
+      "truncated: stopReason == max_tokens"
+    ],
+    "cost_and_latency": [
+      "input/output tokens (Converse usage)",
+      "retrieve_ms, generate_ms (service latencyMs), estimated USD"
+    ]
+  },
+  "protocol": [
+    "1. Both arms use the same questions, Retrieve settings, prompt, model and inferenceConfig (enforced in code).",
+    "2. Run retrieval-only first if desired (--retrieval-only): deterministic, no generation cost.",
+    "3. Full run: Retrieve top-5 then Converse per question per arm; questions are interleaved across arms.",
+    "4. If Retrieve returns no chunks, the runner records the abstain_text without calling the model.",
+    "5. Report per question_type; results written to results/<run-id>/."
+  ]
+}

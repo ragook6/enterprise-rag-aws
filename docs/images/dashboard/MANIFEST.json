@@ -1,0 +1,46 @@
+{
+  "01-dashboard-summary.png": {
+    "output": "docs/images/dashboard/01-dashboard-summary.png",
+    "output_sha256": "45fd1885a026343ce4327f210c13d579d1e3ac3f34622437e42d6d4768cf7790",
+    "size": [
+      1190,
+      1220
+    ],
+    "boxes": 0,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (no account/resource IDs; synthetic data only)"
+  },
+  "02-dashboard-v1-vs-v2.png": {
+    "output": "docs/images/dashboard/02-dashboard-v1-vs-v2.png",
+    "output_sha256": "dae6ad69b295eb20a4402708584d7e23242c18277173ee07d54e81604f7b6e6f",
+    "size": [
+      1190,
+      995
+    ],
+    "boxes": 0,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (no account/resource IDs; synthetic data only)"
+  },
+  "03-dashboard-failure-analysis.png": {
+    "output": "docs/images/dashboard/03-dashboard-failure-analysis.png",
+    "output_sha256": "f8cf0b6bfc826d2500b2e05ee82cd58779d286cd0a0c466a7aa08f46a0c8a4ca",
+    "size": [
+      1190,
+      1080
+    ],
+    "boxes": 0,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (no account/resource IDs; synthetic data only)"
+  },
+  "04-dashboard-question-detail-q30.png": {
+    "output": "docs/images/dashboard/04-dashboard-question-detail-q30.png",
+    "output_sha256": "da349cc42ba6f8614dbb778b99077ee2c80f8a71fc70fb0fd2784c2def4dedaf",
+    "size": [
+      1190,
+      1801
+    ],
+    "boxes": 0,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (no account/resource IDs; synthetic data only)"
+  }
+}

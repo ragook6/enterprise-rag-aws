@@ -1,0 +1,13 @@
+{
+  "scoring_version": "v2",
+  "rescored_at": "2026-11-21T23:16:57.105790+00:00",
+  "revisions_sha256": "78a9611c773f405e",
+  "original_file_sha256": {
+    "results.jsonl": "0731ee43d9854db81c22e0afc60f70b22bc045a68f60c9663a630b00238ccd58",
+    "summary.json": "abee5555e10746ffe2225c3795f03f0d1cf0bb24961d26942e9653425d7a8e57",
+    "summary.md": "4721ecba179f94c78c9811ecc3d2711632babdc4e4f71d8598b1cf4f3618ce62",
+    "run_metadata.json": "bd22da1b4fee3e80f2132f66aca556657f487fd7a64538c518c53fb38d51f738"
+  },
+  "records": 2,
+  "note": "Lexical scoring only; semantic support is not verified."
+}

@@ -1,0 +1,40 @@
+{
+  "baseline-fixed100": {
+    "n_scored": 1,
+    "v1_fully_correct": 1.0,
+    "v2_all_required_facts_matched": 1.0,
+    "v1_answer_keyword_coverage": 1.0,
+    "v2_answer_fact_coverage": 1.0,
+    "v1_answers_with_citation": 1.0,
+    "v2_answers_with_citation": 1.0,
+    "v2_citation_id_validity": 1.0,
+    "v2_cited_chunk_fact_support": null,
+    "v2_false_abstentions": 0,
+    "changed_vs_v1": [],
+    "failure_types": {
+      "none": 1,
+      "retrieval": 0,
+      "generation": 0,
+      "unknown": 0
+    }
+  },
+  "improved-hierarchical": {
+    "n_scored": 1,
+    "v1_fully_correct": 1.0,
+    "v2_all_required_facts_matched": 1.0,
+    "v1_answer_keyword_coverage": 1.0,
+    "v2_answer_fact_coverage": 1.0,
+    "v1_answers_with_citation": 1.0,
+    "v2_answers_with_citation": 1.0,
+    "v2_citation_id_validity": 1.0,
+    "v2_cited_chunk_fact_support": null,
+    "v2_false_abstentions": 0,
+    "changed_vs_v1": [],
+    "failure_types": {
+      "none": 1,
+      "retrieval": 0,
+      "generation": 0,
+      "unknown": 0
+    }
+  }
+}

@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars (git-ignored) only for phase-2 hardening, after the first apply.
+# Values come from:  terraform output -json kb_trust_source_arns
+# Each KB service role will then trust ONLY its own Knowledge Base (in-place trust policy update).
+kb_trust_source_arns = {
+  "baseline-fixed100"     = "arn:aws:bedrock:us-west-2:111122223333:knowledge-base/KBFIXED001"
+  "improved-hierarchical" = "arn:aws:bedrock:us-west-2:111122223333:knowledge-base/KBHIER0001"
+}
+
+# Optional
+# runner_trusted_principal_arns = ["arn:aws:iam::111122223333:user/YOUR_IAM_USER"]
+# budget_alert_email            = "you@example.com"

@@ -1,0 +1,4 @@
+# Development / publishing tools (not needed to run the pipeline)
+detect-secrets>=1.5
+# Historical diagnostic scripts only (scripts/gate3_*.py): Anthropic SDK with Bedrock support
+# anthropic[bedrock]>=2.12

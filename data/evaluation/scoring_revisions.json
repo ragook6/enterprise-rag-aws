@@ -1,0 +1,15 @@
+{
+  "version": "v2",
+  "created": "2026-11-21",
+  "description": "Required-fact scoping for v2 lexical scoring. Only listed questions change; every other question is scored on its ground-truth answer_keywords. 'required' must be a subset of answer_keywords. Original ground_truth.json is unchanged.",
+  "required_keywords": {
+    "Q30": {
+      "required": ["10.66.0.0/20", "tgw-rt-prod"],
+      "rationale": "The question asks for the VPC's CIDR and its Transit Gateway route table. 'vpc-prod-orders-use2' is the linking fact used to find them, not something the question asks the answer to state."
+    },
+    "Q31": {
+      "required": ["1 hour", "15 minutes", "hrl-backup-tier1"],
+      "rationale": "The question asks for RTO, RPO and the backup plan. 'Tier 1' is the intermediate classification that determines them, not a requested output."
+    }
+  }
+}

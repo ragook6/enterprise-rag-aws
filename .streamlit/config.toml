@@ -1,0 +1,11 @@
+# Local-only, private dashboard settings
+[server]
+address = "127.0.0.1"      # listen on this machine only (not the LAN)
+port = 8501
+headless = true            # do not auto-open a browser from the CLI
+
+[browser]
+gatherUsageStats = false   # no telemetry sent to Streamlit
+
+[theme]
+base = "light"
