@@ -101,7 +101,7 @@ Notes grounded in what we observed:
 
 - `overlapPercentage` has an API minimum of 1, so "no overlap" is approximated by 1% (about 1 token).
 - Hierarchical parent chunks carry the page number where the parent *starts*, so page-based metrics under-count it; this is why the evaluation uses a passage-evidence metric (see [Evaluation](#evaluation-methodology)).
-- AWS documents that very large hierarchical settings can exceed S3 Vectors metadata limits; 1,500 + 300 tokens stayed well within them (largest observed metadata about 8.6 KB of the 40 KB per-vector limit).
+- AWS documents that very large hierarchical settings can exceed S3 Vectors metadata limits; 1,500 + 300 tokens stayed well within them (largest observed metadata about 8.6 KB; the indexes use `ENHANCED` mode, which allows up to 100 KB of metadata per vector, versus 40 KB for `CLASSIC` indexes).
 
 ---
 
