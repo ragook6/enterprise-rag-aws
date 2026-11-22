@@ -42,8 +42,8 @@ class RedactTests(unittest.TestCase):
             self.assertEqual(im.mode, "RGB")
             self.assertNotIn("Comment", im.info)                         # text chunk gone
             self.assertEqual(dict(im.getexif()), {})
-            self.assertNotIn(SECRET, set(im.getdata()))                  # no secret pixels anywhere
-            self.assertEqual(set(im.crop((100, 150, 401, 181)).getdata()), {ri.FILL})
+            self.assertNotIn(SECRET, set(im.get_flattened_data()))                  # no secret pixels anywhere
+            self.assertEqual(set(im.crop((100, 150, 401, 181)).get_flattened_data()), {ri.FILL})
         self.assertNotIn(b"111122223333", out.read_bytes())               # not even in the file bytes
         self.assertEqual(hashlib.sha256(self.raw.read_bytes()).hexdigest(), self.raw_hash)  # raw untouched
         self.assertEqual(info["boxes"], 1); self.assertTrue(info["cropped"])
@@ -53,7 +53,7 @@ class RedactTests(unittest.TestCase):
         ri.redact(self.raw, out, crop=[0, 50, 800, 400], boxes=[[90, 140, 410, 190]], max_width=400)
         with Image.open(out) as im:
             self.assertEqual(im.width, 400)
-            self.assertNotIn(SECRET, set(im.getdata()))
+            self.assertNotIn(SECRET, set(im.get_flattened_data()))
 
     def test_cli_manifest_marks_unreviewed_images_pending(self):
         spec = self.tmp / "raw" / "redactions.json"

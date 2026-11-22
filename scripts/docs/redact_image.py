@@ -42,7 +42,7 @@ def redact(src: Path, dst: Path, crop=None, boxes=(), max_width: int | None = 16
         draw.rectangle(tuple(b), fill=FILL)           # overwrite pixels
     for b in boxes:                                    # verify the fill at full resolution, before any resize
         x0, y0, x1, y1 = b
-        if len(set(rgb.crop((x0, y0, x1 + 1, y1 + 1)).getdata())) != 1:
+        if len(set(rgb.crop((x0, y0, x1 + 1, y1 + 1)).get_flattened_data())) != 1:
             raise RuntimeError(f"{src.name}: box {b} is not a uniform fill")
     if max_width and rgb.width > max_width:
         rgb = rgb.resize((max_width, round(rgb.height * max_width / rgb.width)), Image.LANCZOS)

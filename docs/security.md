@@ -59,7 +59,7 @@ change. `tests/test_public_results.py` re-checks this.
 ```bash
 .venv/bin/python scripts/security/scan_public.py          # custom checks on every file selected for publication
 .venv/bin/detect-secrets scan --baseline .secrets.baseline $(git ls-files | grep -vE '\.(pdf|png)$')   # generic detection
-# .secrets.baseline lists 22 audited false positives (SHA-256 integrity hashes, config fingerprints, and the
+# .secrets.baseline lists 37 audited false positives (SHA-256 integrity and screenshot-manifest hashes, config fingerprints, and the
 # literal 'offline' test credential); any new finding is reported as unaudited.
 ```
 

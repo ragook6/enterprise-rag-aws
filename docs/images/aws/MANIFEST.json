@@ -1,0 +1,167 @@
+{
+  "01-bedrock-titan-embeddings.png": {
+    "output": "docs/images/aws/01-bedrock-titan-embeddings.png",
+    "output_sha256": "da66a8fc1b8e7eccfec904b2e87ec7fe0f57d298932b8db6c54ade2f97150a66",
+    "size": [
+      1600,
+      750
+    ],
+    "boxes": 0,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (header cropped; public model information only)"
+  },
+  "02-bedrock-nova-micro-profile.png": {
+    "output": "docs/images/aws/02-bedrock-nova-micro-profile.png",
+    "output_sha256": "394609b48b29eb6d174582f439c13f3da24133ac56562bae7214d12e20c0613b",
+    "size": [
+      1600,
+      750
+    ],
+    "boxes": 0,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (header cropped; public model information only)"
+  },
+  "03-s3-documents-prefix.png": {
+    "output": "docs/images/aws/03-s3-documents-prefix.png",
+    "output_sha256": "f4c1ad5a8e9606877b7a5a6e36a0d016e72600c76d7f9281aac4ed8a74554bde",
+    "size": [
+      1600,
+      618
+    ],
+    "boxes": 0,
+    "cropped": false,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (no bucket name/account visible; time zone column kept by owner decision)"
+  },
+  "04-s3-permissions.png": {
+    "output": "docs/images/aws/04-s3-permissions.png",
+    "output_sha256": "8e129ec40b29c0849e8d5a313c74d1d1c13228d1b04ed185cac60f2dbed64f8d",
+    "size": [
+      1600,
+      618
+    ],
+    "boxes": 1,
+    "cropped": false,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (both bucket-policy Resource ARNs filled solid)"
+  },
+  "05-s3-encryption.png": {
+    "output": "docs/images/aws/05-s3-encryption.png",
+    "output_sha256": "157e9717e521c82402bc5f554b9065b09a69c6e250e65cebb4a895d2c0132a44",
+    "size": [
+      1600,
+      300
+    ],
+    "boxes": 0,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (Default encryption panel only; no identifiers)"
+  },
+  "06-s3-vector-bucket.png": {
+    "output": "docs/images/aws/06-s3-vector-bucket.png",
+    "output_sha256": "40504997a5f2ecb49dc48858dcaf3785b3178948f50f320a4d86d86f0f32fcad",
+    "size": [
+      1600,
+      620
+    ],
+    "boxes": 2,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (bucket name title and index ARNs filled; breadcrumb cropped)"
+  },
+  "07-s3-vector-indexes.png": {
+    "output": "docs/images/aws/07-s3-vector-indexes.png",
+    "output_sha256": "fe49796a8f8bf75b601b8d9c944d5ba8bec4698e3edc47351fd8a6d1d20819eb",
+    "size": [
+      1495,
+      660
+    ],
+    "boxes": 1,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (breadcrumb cropped; index ARN filled)"
+  },
+  "08-bedrock-knowledge-bases.png": {
+    "output": "docs/images/aws/08-bedrock-knowledge-bases.png",
+    "output_sha256": "54e27724321e6198d9a47b6be008ae9caa28dcb45bb893d737e0ff3b7782f696",
+    "size": [
+      1495,
+      789
+    ],
+    "boxes": 0,
+    "cropped": false,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (no identifiers visible)"
+  },
+  "09-kb-fixed-overview.png": {
+    "output": "docs/images/aws/09-kb-fixed-overview.png",
+    "output_sha256": "0a0b3f715364d7b000494dd4eab553b94dbce73416de683e6c201cb60a5deb14",
+    "size": [
+      1495,
+      1130
+    ],
+    "boxes": 1,
+    "cropped": false,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (KB ID filled)"
+  },
+  "10-kb-fixed-chunking.png": {
+    "output": "docs/images/aws/10-kb-fixed-chunking.png",
+    "output_sha256": "ddb359c4a44f0c98ca1ea91d09dd4ac41a537d043d5c6c8b31e2e222094ae402",
+    "size": [
+      1495,
+      1130
+    ],
+    "boxes": 3,
+    "cropped": false,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (data source ID, job ID, S3 URIs filled)"
+  },
+  "11-kb-hierarchical-chunking.png": {
+    "output": "docs/images/aws/11-kb-hierarchical-chunking.png",
+    "output_sha256": "904e3108f649e9967a6c291fa3b31636beb64bb4427be4baa5912d92c8694ee2",
+    "size": [
+      1495,
+      1130
+    ],
+    "boxes": 3,
+    "cropped": false,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (data source ID, job ID, S3 URIs filled)"
+  },
+  "13-iam-kb-role-trust.png": {
+    "output": "docs/images/aws/13-iam-kb-role-trust.png",
+    "output_sha256": "80b7faa551f50ba86b5cc954ce8a075766d0ae6efbdbc0d43c98d49edc6b3b09",
+    "size": [
+      1495,
+      900
+    ],
+    "boxes": 3,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (role ARN, SourceAccount, SourceArn filled)"
+  },
+  "14a-iam-runner-trust.png": {
+    "output": "docs/images/aws/14a-iam-runner-trust.png",
+    "output_sha256": "b4327c87726e34bdb568ecd058a8eaea89f592751eadac3a0dc39afb8564c2ee",
+    "size": [
+      1495,
+      880
+    ],
+    "boxes": 4,
+    "cropped": true,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (role ARN, switch-role link, principal account ID and user name filled)"
+  },
+  "14b-iam-runner-permissions.png": {
+    "output": "docs/images/aws/14b-iam-runner-permissions.png",
+    "output_sha256": "549cf6b55dbfa20c110fc131f0e160cd5ac63dfc27efaa09c38dbb371d75dab9",
+    "size": [
+      1495,
+      1128
+    ],
+    "boxes": 6,
+    "cropped": false,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (policy ARN, account IDs and KB IDs filled)"
+  },
+  "15-cloudtrail-runner-calls.png": {
+    "output": "docs/images/aws/15-cloudtrail-runner-calls.png",
+    "output_sha256": "bc885516e93ee46e2212ffdc59b1030d27686f860b5e1731f492cf5a9126cb73",
+    "size": [
+      1495,
+      1128
+    ],
+    "boxes": 11,
+    "cropped": false,
+    "manual_review": "reviewed by: Claude visual review + owner review approved 2026-11-21 (access key, IP, event/request IDs, AROA IDs, account IDs filled)"
+  }
+}
